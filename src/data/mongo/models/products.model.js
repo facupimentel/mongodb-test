@@ -8,7 +8,7 @@ const schema = new Schema(
     price: { type: Number, default: 100 },
     category: {type: String, default: "none"},
     image: {
-      type: Number,
+      type: String,
       default: "https://cdn-icons-png.flaticon.com/512/4129/4129528.png",
     },
   },

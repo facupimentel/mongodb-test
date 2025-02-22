@@ -1,10 +1,11 @@
 import { ne } from "@faker-js/faker";
-import productsManager from "../data/fs/products.fs.js";
+// import productsManager from "../data/fs/products.fs.js";
+import productsManager from "../data/mongo/products.mongo.js";
 
 const readOneProduct = async (req, res, next) => {
   try {
     const { pid } = req.params;
-    const one = await productsManager.readOne(pid);
+    const one = await productsManager.readById(pid);
     if (one) {
       return res.status(200).json({ response: one });
     }
@@ -41,7 +42,7 @@ const updateProducts = async (req, res, next) => {
     // de los requerimientos necesito el id y la data a actualizar
     const { pid } = req.params;
     const data = req.body;
-    const one = await productsManager.updateOne(pid, data);
+    const one = await productsManager.updateById(pid, data);
     return res.status(200).json({ response: one });
   } catch (error) {
     next(error);

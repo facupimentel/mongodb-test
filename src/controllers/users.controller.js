@@ -1,4 +1,6 @@
-import usersManager from "../data/fs/users.fs.js";
+// import usersManager from "../data/fs/users.fs.js";
+import usersManager from "../data/mongo/users.mongo.js";
+
 
 const readUsers = async (req, res, next) => {
   try {
@@ -62,7 +64,7 @@ const updateUser = async (req, res, next) => {
     // de los requerimientos necesito el id y la data a actualizar
     const { uid } = req.params;
     const data = req.body;
-    const one = await usersManager.updateOne(uid, data);
+    const one = await usersManager.updateById(uid, data);
     return res.status(200).json({ response: one });
   } catch (error) {
     next(error);
